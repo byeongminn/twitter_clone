@@ -31,12 +31,12 @@ export default ({ refreshUser, userObj }) => {
         }
     }
     return (
-        <>
-            <form onSubmit={onSubmit}>
+        <div id="edit__container">
+            <form id="edit__form" onSubmit={onSubmit}>
                 <input type="text" placeholder="Display Name" value={newDisplayName} onChange={onChange} />
-                <input type="submit" value="Update Profile" />
+                <input type="submit" value="→" />
             </form>
             <button onClick={onLogoutClick}>Logout</button>
-        </>
+        </div>
     )
 }

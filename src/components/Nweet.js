@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "../fbase";
+import { FaTrash, FaPen, FaCheck, FaTimes } from "react-icons/fa";
 
 // Nweet 삭제, 수정
 const Nweet = ({ nweetObj, isOwner }) => {
@@ -31,25 +32,27 @@ const Nweet = ({ nweetObj, isOwner }) => {
             {editing ? (
                 <>
                     {isOwner &&
-                        <>
-                            <form onSubmit={onSubmit}>
-                                <input type="text" placeholder="Edit your nweet" value={newNweet} onChange={onChange} required />
-                                <input type="submit" value="Update Nweet" />
+                        <div id="nweet_editContainer">
+                            <button onClick={toggleEditing}><FaTimes /></button>
+                            <form id="nweet__editForm" onSubmit={onSubmit}>
+                                <input type="text" placeholder="Edit your nweet" value={newNweet} onChange={onChange} required autoFocus />
+                                <input type="submit" value="O" />
                             </form>
-                            <button onClick={toggleEditing}>Cancel</button>
-                        </>}
+                        </div>}
                 </>
             ) : (
-                <>
-                    <h4>{nweetObj.text}</h4>
-                    {nweetObj.attachmentURL && <img src={nweetObj.attachmentURL} width="50px" height="50px" />}
+                <div id="nweet__container">
                     {isOwner && (
-                        <>
-                            <button onClick={onDeleteClick}>Delete Nweet</button>
-                            <button onClick={toggleEditing}>Edit Nweet</button>
-                        </>
+                        <div id="nweet__btn">
+                            <button onClick={onDeleteClick}><FaTrash /></button>
+                            <button onClick={toggleEditing}><FaPen /></button>
+                        </div>
                     )}
-                </>
+                    <div id="nweet__content">
+                        <span id="nweet__img">{nweetObj.attachmentURL && <img src={nweetObj.attachmentURL} width="350px" height="300px" />}</span>
+                        <h4>{nweetObj.text}</h4>
+                    </div>
+                </div>
             )}
         </div>
     )

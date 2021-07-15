@@ -18,8 +18,8 @@ const Auth = () => {
     }
     return (
         <div>
-            <div id="nwitter">
-                <FaTwitter id="nwitter-icon" size="40"/>
+            <div id="title">
+                <FaTwitter id="title__icon" size="40"/>
                 <span>느위터</span>
             </div>
             <AuthForm />

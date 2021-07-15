@@ -1,6 +1,7 @@
 import { storageService, dbService } from "../fbase";
 import { v4 as uuidv4 } from "uuid";
 import React, { useState } from "react";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 // Nweet 생성
 const NweetFactory = ({ userObj }) => {
@@ -46,14 +47,18 @@ const NweetFactory = ({ userObj }) => {
     }
     const onClearAttachment = () => setAttachment(null);
     return (
-        <form onSubmit={onSubmit}>
-            <input value={nweet} type="text" placeholder="What's on your mind?" maxLength={120} onChange={onChange} />
-            <input type="file" accept="image/*" onChange={onFileChange} />
-            <input type="submit" value="Nweet" />
+        <form id="nweet__form" onSubmit={onSubmit}>
+            <input id="nweet__content" value={nweet} type="text" placeholder="What's on your mind?" maxLength={120} onChange={onChange} />
+            <label for="nweet__file" id="nweet__file__label" >
+                <span>Add photos</span>
+                <FaPlus />
+            </label>
+            <input id="nweet__file" type="file" accept="image/*" onChange={onFileChange} />
+            <input id="nweet__submit" type="submit" value="→" />
             {attachment && (
-                <div>
-                    <img src={attachment} width="50px" height="50px" />
-                    <button onClick={onClearAttachment}>Clear</button>
+                <div id="nweet__imgPreview">
+                    <img src={attachment} width="150px" height="150px" />
+                    <button onClick={onClearAttachment}>Remove <FaTimes /></button>
                 </div>
             )}
         </form>
